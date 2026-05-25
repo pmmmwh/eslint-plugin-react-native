@@ -56,4 +56,20 @@ describe('configurations', () => {
       assert(inDeprecatedRules ^ inAllConfig); // eslint-disable-line no-bitwise
     });
   });
+
+  it('should export a \'flat/all\' configuration', () => {
+    const flatAll = plugin.configs['flat/all'];
+    assert(flatAll);
+    assert(flatAll.plugins && flatAll.plugins['react-native']);
+    assert(flatAll.languageOptions);
+    Object.keys(flatAll.rules).forEach((configName) => {
+      assert.equal(configName.indexOf('react-native/'), 0);
+      assert.equal(flatAll.rules[configName], 2);
+    });
+    rules.forEach((ruleName) => {
+      const inDeprecatedRules = Boolean(plugin.deprecatedRules[ruleName]);
+      const inFlatAllConfig = Boolean(flatAll.rules['react-native/' + ruleName]);
+      assert(inDeprecatedRules ^ inFlatAllConfig); // eslint-disable-line no-bitwise
+    });
+  });
 });

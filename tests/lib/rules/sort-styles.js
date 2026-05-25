@@ -423,25 +423,7 @@ const tests = {
           // comments 3
         })
       `,
-      output: `
-        const styles = StyleSheet.create({
-          a: {
-            d: 4,
-            // comments 1
-            c: 3,
-            a: 1,
-            b: 2,
-          },
-          d: {},
-          c: {},
-          // comments 2
-          b: {
-            a: 1,
-            b: 2,
-          },
-          // comments 3
-        })
-      `,
+      output: null,
       errors: [
         {
           message:
